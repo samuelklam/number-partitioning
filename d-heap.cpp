@@ -2,7 +2,6 @@
 //  d-heap.cpp
 //  number-partition
 //
-//
 
 #include "d-heap.hpp"
 
