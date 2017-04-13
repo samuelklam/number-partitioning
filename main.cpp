@@ -63,7 +63,7 @@ int main(int argc, const char * argv[]) {
     // read in values from input file and run KK
     if (algo_flag == 0) {
         initialize_sequence(1, num_elements, A, infile);
-        cout << karmarkar_karp(A) << endl;
+        cout << karmarkar_karp(A) << "\n" << endl;
     }
     
     // run regular randomized heuristic algos
@@ -75,7 +75,7 @@ int main(int argc, const char * argv[]) {
         }
     }
     
-    // run pre-partition KK
+    // run pre-partition randomized heuristic algos
     else {
         cout << "TODO";
     }

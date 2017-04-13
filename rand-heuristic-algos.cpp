@@ -13,20 +13,13 @@ int64_t compute_residue(vector<int64_t> &A) {
     return abs(sum);
 }
 
-void print_A(vector<int64_t> &A) {
-    for (int i = 0; i < A.size(); i++) {
-        cout << A[i] << ",";
-    }
-    cout << endl;
-}
-
 void find_rand_neighbor(vector<int64_t> &A) {
     int idx1 = rand() % A.size();
     int idx2 = rand() % A.size();
     
     // ensure they are different
     while (idx1 == idx2) {
-        idx2 = rand() % A.size() + 1;
+        idx2 = rand() % A.size();
     }
     
     A[idx1] = -A[idx1];
