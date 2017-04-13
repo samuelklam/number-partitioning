@@ -73,10 +73,9 @@ class DHeap {
         
         /*
          * Deletes the max from the heap and rebalances
-         * @param max : stores the max element to be returned
-         * @return : the maximum element
+         * @param max : reference to store the max element
          */
-        int64_t DeleteMax(int64_t min);
+        void DeleteMax(int64_t &min);
         
         /*
          * Rearranges the tree rooted at parent_pos to be a MAX-HEAP

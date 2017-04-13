@@ -50,16 +50,14 @@ void DHeap::BubbleUp(int insert_pos) {
     }
 }
 
-int64_t DHeap::DeleteMax(int64_t max) {
+void DHeap::DeleteMax(int64_t &max) {
     if (IsEmpty()) {
         std::cout << "Warning! There are no elements in the heap currently." << std::endl;
-        return max;
     }
     max = array[0];
     array[0] = array[current_size-1];
     current_size--;
     MaxHeapify(0);
-    return max;
 }
 
 void DHeap::MaxHeapify(int parent_pos) {
