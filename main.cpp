@@ -9,6 +9,7 @@
 #include <vector>
 #include "d-heap.hpp"
 #include "karmarkar-karp.hpp"
+#include "rand-heuristic-algos.hpp"
 
 using namespace std;
 
@@ -34,17 +35,17 @@ int64_t random_num_generator() {
  * @param arr : reference to array to store values in
  * @param infile : reference to file to read input from
  */
-void initialize_sequence(bool b, int n, vector<int64_t> &S, ifstream &infile) {
+void initialize_sequence(bool b, int n, vector<int64_t> &A, ifstream &infile) {
     if (b) {
         int64_t val;
         for (int i = 0; i < n; i++) {
             infile >> val;
-            S[i] = val;
+            A[i] = val;
         }
     }
     else {
         for (int j = 0; j < n; j++) {
-            S[j] = random_num_generator();
+            A[j] = random_num_generator();
         }
     }
 }
@@ -56,13 +57,28 @@ int main(int argc, const char * argv[]) {
     }
     
     ifstream infile(argv[1]);
-    bool input_bool = 1;
-    int num_elements = 10;
-    vector<int64_t> S(num_elements);
+    int algo_flag = 1, num_elements = 100, num_instances = 1, num_iterations = 25000;
+    vector<int64_t> A(num_elements);
     
-    // read in values from input file
-    if (input_bool) {
-        initialize_sequence(input_bool, num_elements, S, infile);
-        cout << karmarkar_karp(S) << endl;
-    }    
+    // read in values from input file and run KK
+    if (algo_flag == 0) {
+        initialize_sequence(1, num_elements, A, infile);
+        cout << karmarkar_karp(A) << endl;
+    }
+    
+    // run regular randomized heuristic algos
+    else if (algo_flag == 1) {
+        srand((unsigned)time(NULL));
+        for (int i = 0; i < num_instances; i++) {
+            initialize_sequence(0, num_elements, A, infile);
+            run_rand_algos(A, num_iterations);
+        }
+    }
+    
+    // run pre-partition KK
+    else {
+        cout << "TODO";
+    }
+    
+    return 0;
 }
