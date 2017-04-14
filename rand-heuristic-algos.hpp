@@ -36,12 +36,9 @@ void find_rand_neighbor(vector<int64_t> &A);
 void find_rand_solution(vector<int64_t> &A);
 
 /*
- * Mutates A to a random solution and returns it
- */
-vector<int64_t> return_rand_solution(vector<int64_t> &A);
-
-/*
  * Iterator function for use in calculating probability in simulated annealing
+ * @param iter : index passed in from for loop
+ * @return : probability
  */
 double t_iter(int64_t iter);
 

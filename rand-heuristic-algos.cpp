@@ -36,6 +36,10 @@ void find_rand_solution(vector<int64_t> &A) {
     }
 }
 
+double t_iter(int64_t iter) {
+    return pow(10000000000 * (0.8), floor(iter / double(300)));
+}
+
 int64_t repeated_random(vector<int64_t> A, int num_iterations) {
     vector<int64_t> A2;
     int64_t residue = compute_residue(A);
@@ -97,10 +101,6 @@ int64_t simulated_annealing(vector<int64_t> A, int num_iterations) {
         }
     }
     return residue_A2_best;
-}
-
-double t_iter(int64_t iter) {
-    return pow(10000000000 * (0.8), floor(iter / double(300)));
 }
 
 void run_rand_algos(vector<int64_t> A, int num_iterations) {
