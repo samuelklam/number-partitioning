@@ -95,7 +95,7 @@ int64_t simulated_annealing(vector<int64_t> A, int num_iterations) {
             residue = residue_A1;
         }
         
-        residue_best = max(residue, residue_best);
+        residue_best = min(residue, residue_best);
     }
     return residue_best;
 }
