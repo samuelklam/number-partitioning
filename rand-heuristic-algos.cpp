@@ -77,9 +77,9 @@ int64_t hill_climbing(vector<int64_t> A, int num_iterations) {
 }
 
 int64_t simulated_annealing(vector<int64_t> A, int num_iterations) {
-    vector<int64_t> A1, A2_best = A;
+    vector<int64_t> A1;
     int64_t residue = compute_residue(A), residue_A1;
-    int64_t residue_A2_best = residue;
+    int64_t residue_best = residue;
     
     for (int i = 0; i < num_iterations; i++) {
         A1 = A;
@@ -90,17 +90,14 @@ int64_t simulated_annealing(vector<int64_t> A, int num_iterations) {
             A = A1;
             residue = residue_A1;
         }
-        else if (((double)rand() / (RAND_MAX)) <= exp((-(residue_A1-residue)) / t_iter(i))) {
+        else if (((double)rand() / (RAND_MAX)) <= exp((-(residue_A1 - residue)) / t_iter(i))) {
             A = A1;
             residue = residue_A1;
         }
         
-        if (residue < residue_A2_best) {
-            A2_best = A;
-            residue_A2_best = residue;
-        }
+        residue_best = max(residue, residue_best);
     }
-    return residue_A2_best;
+    return residue_best;
 }
 
 void run_rand_algos(vector<int64_t> A, int num_iterations) {
