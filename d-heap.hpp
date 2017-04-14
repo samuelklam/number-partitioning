@@ -9,7 +9,6 @@
 #define d_heap_hpp
 
 #include <stdio.h>
-#include <stdint.h>
 #include <iostream>
 
 /*

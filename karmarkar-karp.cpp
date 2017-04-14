@@ -33,12 +33,3 @@ int64_t karmarkar_karp(vector<int64_t> &A) {
     
     return diff;
 }
-
-void gen_rand_solution(vector<int64_t> &S) {
-    for (int i = 0; i < S.size(); i++) {
-        bool sign = rand() % 2;
-        if (sign) {
-            
-        }
-    }
-}

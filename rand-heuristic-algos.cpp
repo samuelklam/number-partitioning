@@ -36,18 +36,6 @@ void find_rand_solution(vector<int64_t> &A) {
     }
 }
 
-vector<int64_t> return_rand_solution(vector<int64_t> &A) {
-    vector<int64_t> B;
-    for (int i = 0; i < A.size(); i++) {
-        if (rand() % 2) {
-            B.push_back(-A[i]);
-        }
-        B.push_back(A[i]);
-    }
-    return B;
-}
-
-
 int64_t repeated_random(vector<int64_t> A, int num_iterations) {
     vector<int64_t> A2;
     int64_t residue = compute_residue(A);
@@ -56,7 +44,6 @@ int64_t repeated_random(vector<int64_t> A, int num_iterations) {
     for (int i = 0; i < num_iterations; i++) {
         A2 = A;
         find_rand_solution(A2);
-        
         new_residue = compute_residue(A2);
         if (new_residue < residue) {
             A = A2;
@@ -86,30 +73,34 @@ int64_t hill_climbing(vector<int64_t> A, int num_iterations) {
 }
 
 int64_t simulated_annealing(vector<int64_t> A, int num_iterations) {
-    vector<int64_t> A2 = A;
-    for(int i = 0; i < num_iterations; i++){
-        int64_t residue = compute_residue(A);
-        int64_t residue_A2 = compute_residue(A2);
-        vector<int64_t> A1 = return_rand_solution(A);
-        int64_t residue_A1 = compute_residue(A1);
-        if(residue_A1 < residue) {
+    vector<int64_t> A1, A2_best = A;
+    int64_t residue = compute_residue(A), residue_A1;
+    int64_t residue_A2_best = residue;
+    
+    for (int i = 0; i < num_iterations; i++) {
+        A1 = A;
+        find_rand_neighbor(A1);
+        residue_A1 = compute_residue(A1);
+        
+        if (residue_A1 < residue) {
             A = A1;
+            residue = residue_A1;
         }
-        else {
-            if(rand() <= exp((-(residue_A1-residue))/t_iter(i))){
-                A = A1;
-            }
+        else if (((double)rand() / (RAND_MAX)) <= exp((-(residue_A1-residue)) / t_iter(i))) {
+            A = A1;
+            residue = residue_A1;
         }
-        residue = compute_residue(A);
-        if(residue < residue_A2) {
-            A2 = A;
+        
+        if (residue < residue_A2_best) {
+            A2_best = A;
+            residue_A2_best = residue;
         }
     }
-    return compute_residue(A2);
+    return residue_A2_best;
 }
 
 double t_iter(int64_t iter) {
-    return pow(10000000000*(0.8), floor(iter/double(300)));
+    return pow(10000000000 * (0.8), floor(iter / double(300)));
 }
 
 void run_rand_algos(vector<int64_t> A, int num_iterations) {
