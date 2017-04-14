@@ -36,6 +36,16 @@ void find_rand_neighbor(vector<int64_t> &A);
 void find_rand_solution(vector<int64_t> &A);
 
 /*
+ * Mutates A to a random solution and returns it
+ */
+vector<int64_t> return_rand_solution(vector<int64_t> &A);
+
+/*
+ * Iterator function for use in calculating probability in simulated annealing
+ */
+double t_iter(int64_t iter);
+
+/*
  * Runs repeated random algorithm for num_iterations and returns final residual
  * @param A : starting random solution A (or S)
  * @param num_iterations : # of iterations to run for
@@ -50,6 +60,14 @@ int64_t repeated_random(vector<int64_t> A, int num_iterations);
  * @return : the final residual calculated
  */
 int64_t hill_climbing(vector<int64_t> A, int num_iterations);
+
+/*
+ * Runs simulated annealing algorithm for num_iterations and returns final residual
+ * @param A : starting random solution A (or S)
+ * @param num_iterations : # of iterations to run for
+ * @return : the final residual calculated
+ */
+int64_t simulated_annealing(vector<int64_t> A, int num_iterations);
 
 /*
  * Runs KK, repeated random, hill climbing, and annealing. Prints / reads
