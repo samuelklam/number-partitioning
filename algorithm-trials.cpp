@@ -39,8 +39,9 @@ void run_rand_algos(vector<int64_t> A, int num_iterations, ofstream *file_arr[7]
     
     // Pre-Partioned Repeated Random
     start = clock();
-    read_to_file(*file_arr[4], "Repeated-Random-Pre-Part", repeated_random_prepart(A_copy, num_iterations), start, num_iterations);
+    read_to_file(*file_arr[4], "Repeated-Random Pre-Part", repeated_random_prepart(A_copy, num_iterations), start, num_iterations);
     // Pre-Partioned Hill Climbing
-    
+    start = clock();
+    read_to_file(*file_arr[5], "Hill-Climbing Pre-Part", hill_climbing_prepart(A_copy, num_iterations), start, num_iterations);
     // Pre-Partioned Simulated Annealing
 }
