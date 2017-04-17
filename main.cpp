@@ -9,7 +9,7 @@
 #include <vector>
 #include "d-heap.hpp"
 #include "karmarkar-karp.hpp"
-#include "rand-heuristic-algos.hpp"
+#include "algorithm-trials.hpp"
 
 using namespace std;
 
@@ -57,28 +57,42 @@ int main(int argc, const char * argv[]) {
     }
     
     ifstream infile(argv[1]);
-    int algo_flag = 1, num_elements = 100, num_instances = 1, num_iterations = 25000;
+    ofstream f1, f2, f3, f4, f5, f6, f7;
+    int algo_flag = 1, num_elements = 100, num_instances = 50, num_iterations = 25000;
     vector<int64_t> A(num_elements);
-    
+
     // read in values from input file and run KK
     if (algo_flag == 0) {
         initialize_sequence(1, num_elements, A, infile);
         cout << karmarkar_karp(A) << "\n" << endl;
     }
-    
-    // run regular randomized heuristic algos
-    else if (algo_flag == 1) {
+    // run 7 algos
+    else {
+        // open all files and prepare to read in input
+        f1.open("./output/kk_25k.txt");
+        f2.open("./output/rep_rand_25k.txt");
+        f3.open("./output/hill_climb_25k.txt");
+        f4.open("./output/sim_anneal_25k.txt");
+        f5.open("./output/pre_rep_rand_25k.txt");
+        f6.open("./output/pre_hill_climb_25k.txt");
+        f7.open("./output/pre_sim_anneal_25k.txt");
+        ofstream *file_arr[7] = {&f1, &f2, &f3, &f4, &f5, &f6, &f7};
+        
+        // print header to the file for easier data reading
+        for (int f = 0; f < 7; f++) {
+            *file_arr[f] << "Residue,Time,Num_Iterations" << endl;
+        }
+        
         srand((unsigned)time(NULL));
         for (int i = 0; i < num_instances; i++) {
             initialize_sequence(0, num_elements, A, infile);
-            run_rand_algos(A, num_iterations);
+            run_rand_algos(A, num_iterations, file_arr);
+        }
+        
+        // close all files
+        for (int j = 0; j < 7; j++) {
+            file_arr[j]->close();
         }
     }
-    
-    // run pre-partition randomized heuristic algos
-    else {
-        cout << "TODO";
-    }
-    
     return 0;
 }

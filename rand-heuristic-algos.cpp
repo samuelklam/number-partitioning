@@ -99,28 +99,3 @@ int64_t simulated_annealing(vector<int64_t> A, int num_iterations) {
     }
     return residue_best;
 }
-
-void run_rand_algos(vector<int64_t> A, int num_iterations) {
-    clock_t start;
-    cout << "Algorithm,Residual Value,Time,Num Iterations" << endl;
-    start = clock();
-    
-    // Karmarkar-Karp
-    cout << "Karmarkar-Karp," << karmarkar_karp(A) << "," << (double)(clock() - start) / CLOCKS_PER_SEC << "," << num_iterations << endl;
-    
-    // Start with the same random solution for all 3 algorithms
-    find_rand_solution(A);
-    
-    // Repeated Random
-    start = clock();
-    cout << "Repeated-Random," << repeated_random(A, num_iterations) << "," << (double)(clock() - start) / CLOCKS_PER_SEC << "," << num_iterations << endl;
-    
-    // Hill Climbing
-    start = clock();
-    cout << "Hill-Climbing," << hill_climbing(A, num_iterations) << "," << (double)(clock() - start) / CLOCKS_PER_SEC << "," << num_iterations << endl;
-    
-    // Simulated Annealing
-    start = clock();
-    cout << "Simulated-Annealing," << simulated_annealing(A, num_iterations) << "," << (double)(clock() - start) / CLOCKS_PER_SEC << "," << num_iterations << endl;
-
-}
