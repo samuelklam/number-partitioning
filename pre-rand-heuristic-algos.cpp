@@ -4,7 +4,7 @@
 //
 #include "pre-rand-heuristic-algos.hpp"
 
-vector<int64_t> get_rand_prepartioning(vector<int64_t> &A) {
+vector<int64_t> get_rand_prepart(vector<int64_t> &A) {
     vector<int64_t> p;
     for(int i = 0; i < A.size(); i++){
         p.push_back(rand() % A.size());
@@ -30,14 +30,16 @@ void find_rand_neighbor_prepart(vector<int64_t> &p) {
 
 int64_t repeated_random_prepart(vector<int64_t> A, int num_iterations) {
     vector<int64_t> A2;
-    int64_t residue = karmarkar_karp(A);
+    // start with random solution
+    vector<int64_t> A_copy = get_rand_prepart(A);
+    int64_t residue = karmarkar_karp(A_copy);
     int64_t new_residue;
-    
     for (int i = 0; i < num_iterations; i++) {
-        A2 = get_rand_prepartioning(A);
+        // try another new solution
+        A2 = get_rand_prepart(A);
         new_residue = karmarkar_karp(A2);
         if (new_residue < residue) {
-            A = A2;
+            A_copy = A2;
             residue = new_residue;
         }
     }

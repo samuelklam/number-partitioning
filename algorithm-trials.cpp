@@ -18,9 +18,9 @@ void run_rand_algos(vector<int64_t> A, int num_iterations, ofstream *file_arr[7]
     start = clock();
     read_to_file(*file_arr[0], "KK", karmarkar_karp(A), start, num_iterations);
     
-    // Pre-Partioned Random Solution
-    vector<int64_t> A2 = get_rand_prepartioning(A);
-    
+    // Pre-Partioned Random Solution and copy of A
+    vector<int64_t> A2 = get_rand_prepart(A);
+    vector<int64_t> A_copy = A;
     // Start with the same random solution for 3 non partioned algorithms
     find_rand_solution(A);
     
@@ -39,7 +39,7 @@ void run_rand_algos(vector<int64_t> A, int num_iterations, ofstream *file_arr[7]
     
     // Pre-Partioned Repeated Random
     start = clock();
-    read_to_file(*file_arr[4], "Repeated-Random-Pre-Part", repeated_random_prepart(A2, num_iterations), start, num_iterations);
+    read_to_file(*file_arr[4], "Repeated-Random-Pre-Part", repeated_random_prepart(A_copy, num_iterations), start, num_iterations);
     // Pre-Partioned Hill Climbing
     
     // Pre-Partioned Simulated Annealing

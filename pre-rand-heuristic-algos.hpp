@@ -15,7 +15,7 @@ using namespace std;
 /*
  * Uses a pre-partitioning sequence to generate corresponding permutation of A
  */
-vector<int64_t> get_rand_prepartioning(vector<int64_t> &A);
+vector<int64_t> get_rand_prepart(vector<int64_t> &A);
 
 /*
  * Mutates solution permutation p to a neighbouring solution permutation
