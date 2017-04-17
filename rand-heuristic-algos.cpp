@@ -7,19 +7,21 @@
 
 int64_t compute_residue(vector<int64_t> &A) {
     int64_t sum = 0;
-    for (int i = 0; i < A.size(); i++) {
+    unsigned long A_size = A.size();
+    for (int i = 0; i < A_size; i++) {
         sum += A[i];
     }
     return abs(sum);
 }
 
 void find_rand_neighbor(vector<int64_t> &A) {
-    int idx1 = rand() % A.size();
-    int idx2 = rand() % A.size();
+    unsigned long A_size = A.size();
+    int idx1 = rand() % A_size;
+    int idx2 = rand() % A_size;
     
     // ensure they are different
     while (idx1 == idx2) {
-        idx2 = rand() % A.size();
+        idx2 = rand() % A_size;
     }
     
     A[idx1] = -A[idx1];
@@ -29,7 +31,8 @@ void find_rand_neighbor(vector<int64_t> &A) {
 }
 
 void find_rand_solution(vector<int64_t> &A) {
-    for (int i = 0; i < A.size(); i++) {
+    unsigned long A_size = A.size();
+    for (int i = 0; i < A_size; i++) {
         if (rand() % 2) {
             A[i] = -A[i];
         }
