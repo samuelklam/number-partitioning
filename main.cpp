@@ -58,7 +58,7 @@ int main(int argc, const char * argv[]) {
     
     ifstream infile(argv[1]);
     ofstream f1, f2, f3, f4, f5, f6, f7;
-    int algo_flag = 1, num_elements = 100, num_instances = 50, num_iterations = 25000;
+    int algo_flag = 0, num_elements = 100, num_instances = 50, num_iterations = 25000;
     vector<int64_t> A(num_elements);
 
     // read in values from input file and run KK
