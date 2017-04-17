@@ -60,8 +60,7 @@ int64_t repeated_random(vector<int64_t> A, int num_iterations) {
 
 int64_t hill_climbing(vector<int64_t> A, int num_iterations) {
     vector<int64_t> A2;
-    int64_t residue = compute_residue(A);
-    int64_t new_residue;
+    int64_t residue = compute_residue(A), new_residue;
     
     for (int i = 0; i < num_iterations; i++) {
         A2 = A;

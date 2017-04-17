@@ -1,1 +1,1 @@
-Residue,Time,Num_Iterations
+Residue, Time, Num_Iterations
