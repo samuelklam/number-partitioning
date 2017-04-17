@@ -80,10 +80,10 @@ int main(int argc, const char * argv[]) {
         
         // print header to the file for easier data reading
         for (int f = 0; f < 7; f++) {
-            *file_arr[f] << "Residue,Time,Num_Iterations" << endl;
+            *file_arr[f] << "Residue, Time, Num_Iterations" << endl;
         }
         
-        srand((unsigned)time(NULL));
+        srand(/*(unsigned)time(NULL)*/ 0);
         for (int i = 0; i < num_instances; i++) {
             initialize_sequence(0, num_elements, A, infile);
             run_rand_algos(A, num_iterations, file_arr);
