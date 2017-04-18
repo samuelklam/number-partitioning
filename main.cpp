@@ -80,7 +80,7 @@ int main(int argc, const char * argv[]) {
         
         // print header to the file for easier data reading
         for (int f = 0; f < 7; f++) {
-            *file_arr[f] << "Residue, Time, Num_Iterations" << endl;
+            *file_arr[f] << "Residue,Time,Num_Iterations" << endl;
         }
         
         srand(/*(unsigned)time(NULL)*/ 0);
