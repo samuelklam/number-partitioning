@@ -44,16 +44,13 @@ double t_iter(int64_t iter) {
 }
 
 int64_t repeated_random(vector<int64_t> A, int num_iterations) {
-    vector<int64_t> A2;
     int64_t residue = compute_residue(A);
     int64_t new_residue;
-    
+
     for (int i = 0; i < num_iterations; i++) {
-        A2 = A;
-        find_rand_solution(A2);
-        new_residue = compute_residue(A2);
+        find_rand_solution(A);
+        new_residue = compute_residue(A);
         if (new_residue < residue) {
-            A = A2;
             residue = new_residue;
         }
     }

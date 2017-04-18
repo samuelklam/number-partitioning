@@ -83,7 +83,8 @@ int main(int argc, const char * argv[]) {
             *file_arr[f] << "Residue,Time,Num_Iterations" << endl;
         }
         
-        srand(/*(unsigned)time(NULL)*/ 0);
+//        srand((unsigned)time(NULL));
+        srand(0);
         for (int i = 0; i < num_instances; i++) {
             initialize_sequence(0, num_elements, A, infile);
             run_rand_algos(A, num_iterations, file_arr);
