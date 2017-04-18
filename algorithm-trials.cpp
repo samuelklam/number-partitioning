@@ -21,6 +21,7 @@ void run_rand_algos(vector<int64_t> A, int num_iterations, ofstream *file_arr[7]
     // Pre-Partioned Random Solution and copy of A
     vector<int64_t> A2 = get_rand_prepart(A);
     vector<int64_t> A_copy = A;
+
     // Start with the same random solution for 3 non partioned algorithms
     find_rand_solution(A);
     
@@ -35,7 +36,6 @@ void run_rand_algos(vector<int64_t> A, int num_iterations, ofstream *file_arr[7]
     // Simulated Annealing
     start = clock();
     read_to_file(*file_arr[3], "Simulated-Annealing", simulated_annealing(A, num_iterations), start, num_iterations);
-    
     
     // Pre-Partioned Repeated Random
     start = clock();
