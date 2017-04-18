@@ -31,12 +31,31 @@ void find_rand_neighbor_prepart(vector<int64_t> &p) {
     p[idx1] = idx2;
 }
 
-int64_t repeated_random_prepart(vector<int64_t> A, int num_iterations) {
+//int64_t repeated_random_prepart(vector<int64_t> A, int num_iterations) {
+//    vector<int64_t> A2;
+//    // start with random solution
+//    vector<int64_t> p = get_rand_prepart(A);
+//    vector<int64_t> A_copy = to_regular_solution(A, p);
+//    int64_t residue = karmarkar_karp(A_copy);
+//    int64_t new_residue;
+//    
+//    for (int i = 0; i < num_iterations; i++) {
+//        // try another new solution
+//        vector<int64_t> new_p = get_rand_prepart(A);
+//        A2 = to_regular_solution(A, new_p);
+//        new_residue = karmarkar_karp(A2);
+//        if (new_residue < residue) {
+//            A_copy = A2;
+//            residue = new_residue;
+//        }
+//    }
+//    return residue;
+//}
+
+int64_t repeated_random_prepart(vector<int64_t> A, vector<int64_t> A_rand, int num_iterations) {
     vector<int64_t> A2;
-    // start with random solution
-    vector<int64_t> p = get_rand_prepart(A);
-    vector<int64_t> A_copy = to_regular_solution(A, p);
-    int64_t residue = karmarkar_karp(A_copy);
+    // calculate residue of random solution
+    int64_t residue = karmarkar_karp(A_rand);
     int64_t new_residue;
     
     for (int i = 0; i < num_iterations; i++) {
@@ -44,27 +63,28 @@ int64_t repeated_random_prepart(vector<int64_t> A, int num_iterations) {
         vector<int64_t> new_p = get_rand_prepart(A);
         A2 = to_regular_solution(A, new_p);
         new_residue = karmarkar_karp(A2);
+        // if new solution is better, use that instead
         if (new_residue < residue) {
-            A_copy = A2;
+            A_rand = A2;
             residue = new_residue;
         }
     }
     return residue;
 }
 
-int64_t hill_climbing_prepart(vector<int64_t> A, int num_iterations) {
+int64_t hill_climbing_prepart(vector<int64_t> A, vector<int64_t> A_rand, vector<int64_t> &p, int num_iterations) {
+    // calculate residue of random solution
     vector<int64_t> A2;
-    // start with random solution
-    vector<int64_t> p = get_rand_prepart(A);
-    vector<int64_t> A_copy = to_regular_solution(A, p);
-    int64_t residue = karmarkar_karp(A_copy);
+    int64_t residue = karmarkar_karp(A_rand);
     
     for(int i = 0; i < num_iterations; i++) {
+        // try neighbour solution
         find_rand_neighbor_prepart(p);
         vector<int64_t> A2 = to_regular_solution(A, p);
         int64_t new_residue = karmarkar_karp(A2);
+        // if better, switch to it
         if(new_residue < residue) {
-            A_copy = A2;
+            A_rand = A2;
             residue = new_residue;
         }
     }
@@ -72,11 +92,8 @@ int64_t hill_climbing_prepart(vector<int64_t> A, int num_iterations) {
     return residue;
 }
 
-int64_t simulated_annealing_prepart(vector<int64_t> A, int num_iterations) {
+int64_t simulated_annealing_prepart(vector<int64_t> A, vector<int64_t> A_rand, vector<int64_t> &p, int num_iterations) {
     vector<int64_t> A2;
-    // start with random solution A_rand
-    vector<int64_t> p = get_rand_prepart(A);
-    vector<int64_t> A_rand = to_regular_solution(A, p);
     A2 = A_rand;
     int64_t residue = karmarkar_karp(A_rand);
     int64_t residue_best = residue;

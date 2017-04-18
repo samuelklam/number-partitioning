@@ -33,7 +33,7 @@ void find_rand_neighbor_prepart(vector<int64_t> &p);
  * @param num_iterations : # of iterations to run for
  * @return : the final residual calculated
  */
-int64_t repeated_random_prepart(vector<int64_t> A, int num_iterations);
+int64_t repeated_random_prepart(vector<int64_t> A, vector<int64_t> A_rand, int num_iterations);
 
 /*
  * Runs pre-partitioned hill climbing algo for num_iterations and returns final residual
@@ -41,7 +41,7 @@ int64_t repeated_random_prepart(vector<int64_t> A, int num_iterations);
  * @param num_iterations : # of iterations to run for
  * @return : the final residual calculated
  */
-int64_t hill_climbing_prepart(vector<int64_t> A, int num_iterations);
+int64_t hill_climbing_prepart(vector<int64_t> A, vector<int64_t> A_rand, vector<int64_t> &p, int num_iterations);
 
 /*
  * Runs pre-partitioned simulated annealing algorithm for num_iterations and returns final residual
@@ -49,6 +49,6 @@ int64_t hill_climbing_prepart(vector<int64_t> A, int num_iterations);
  * @param num_iterations : # of iterations to run for
  * @return : the final residual calculated
  */
-int64_t simulated_annealing_prepart(vector<int64_t> A, int num_iterations);
+int64_t simulated_annealing_prepart(vector<int64_t> A, vector<int64_t> A_rand, vector<int64_t> &p, int num_iterations);
 
 #endif /* pre_rand_heuristic_algos_hpp */
