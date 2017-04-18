@@ -71,7 +71,6 @@ int64_t simulated_annealing_prepart(vector<int64_t> A, vector<int64_t> P, int nu
     vector<int64_t> A1, P1;
     A1 = to_regular_solution(A, P);
     int64_t residue = karmarkar_karp(A1), residue_A1;
-    int64_t residue_best = residue;
     
     for(int i = 0; i < num_iterations; i++) {
         P1 = P;
@@ -85,10 +84,8 @@ int64_t simulated_annealing_prepart(vector<int64_t> A, vector<int64_t> P, int nu
         }
         else if (((double)rand() / (RAND_MAX)) <= exp((-(residue_A1 - residue)) / t_iter(i))) {
             P = P1;
-            residue = residue_A1;
         }
-        residue_best = min(residue, residue_best);
     }
     
-    return residue_best;
+    return residue;
 }

@@ -8,7 +8,7 @@
 void read_to_file(ofstream &file, string algo_name, int64_t residue, clock_t start_time, int num_iterations) {
     double end_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
     
-    bool mat_lab_vs_jupyter_bool = 1;
+    bool mat_lab_vs_jupyter_bool = 0;
     if (mat_lab_vs_jupyter_bool) {
         file << residue << " " << end_time << " " << num_iterations << endl;
         cout << algo_name << " " << residue << " " << end_time << " " << num_iterations << endl;

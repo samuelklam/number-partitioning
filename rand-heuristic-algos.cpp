@@ -91,7 +91,6 @@ int64_t simulated_annealing(vector<int64_t> A, int num_iterations) {
         }
         else if (((double)rand() / (RAND_MAX)) <= exp((-(residue_A1 - residue)) / t_iter(i))) {
             A = A1;
-            residue = residue_A1;
         }
         residue_best = min(residue, residue_best);
     }
