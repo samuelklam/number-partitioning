@@ -9,8 +9,7 @@ DHeap::DHeap(int capacity, int num_children) {
     size = capacity;
     current_size = 0;
     d = num_children;
-    // initialize array to values of -1
-    array = new int64_t[capacity]{-1};
+    array = new int64_t[capacity];
 }
 
 bool DHeap::IsEmpty() {
