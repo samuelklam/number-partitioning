@@ -58,7 +58,7 @@ int main(int argc, const char * argv[]) {
     
     ifstream infile(argv[1]);
     ofstream f1, f2, f3, f4, f5, f6, f7;
-    int algo_flag = 0, num_elements = 100, num_instances = 100, num_iterations = 40000;
+    int algo_flag = 0, num_elements = 100, num_instances = 100, num_iterations = 25000;
     vector<int64_t> A(num_elements);
 
     // read in values from input file and run KK
@@ -83,8 +83,7 @@ int main(int argc, const char * argv[]) {
             *file_arr[f] << "Residue,Time,Num_Iterations" << endl;
         }
         
-//        srand((unsigned)time(NULL));
-        srand(0);
+        srand((unsigned)time(NULL));
         for (int i = 0; i < num_instances; i++) {
             initialize_sequence(0, num_elements, A, infile);
             run_rand_algos(A, num_iterations, file_arr);

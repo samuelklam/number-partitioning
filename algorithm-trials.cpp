@@ -33,17 +33,17 @@ void run_rand_algos(vector<int64_t> A, int num_iterations, ofstream *file_arr[7]
     find_rand_solution(A);
     
     // Repeated Random
-//    start = clock();
-//    read_to_file(*file_arr[1], "Repeated-Random", repeated_random(A, num_iterations), start, num_iterations);
-//    
-//    // Hill Climbing
-//    start = clock();
-//    read_to_file(*file_arr[2], "Hill-Climbing", hill_climbing(A, num_iterations), start, num_iterations);
-//    
-//    // Simulated Annealing
-//    start = clock();
-//    read_to_file(*file_arr[3], "Simulated-Annealing", simulated_annealing(A, num_iterations), start, num_iterations);
-//    
+    start = clock();
+    read_to_file(*file_arr[1], "Repeated-Random", repeated_random(A, num_iterations), start, num_iterations);
+    
+    // Hill Climbing
+    start = clock();
+    read_to_file(*file_arr[2], "Hill-Climbing", hill_climbing(A, num_iterations), start, num_iterations);
+    
+    // Simulated Annealing
+    start = clock();
+    read_to_file(*file_arr[3], "Simulated-Annealing", simulated_annealing(A, num_iterations), start, num_iterations);
+
     // Pre-Partioned Repeated Random
     start = clock();
     read_to_file(*file_arr[4], "Repeated-Random Pre-Part", repeated_random_prepart(A_copy, P, num_iterations), start, num_iterations);
